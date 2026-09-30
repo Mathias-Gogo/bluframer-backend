@@ -1,0 +1,20 @@
+# Render Blueprint. In the Render dashboard: New + -> Blueprint -> point at
+# this repo. Render reads this file and creates the service below.
+# Secrets are marked sync: false so Render prompts for them in the
+# dashboard instead of storing them in this file (which is committed to git).
+services:
+  - type: web
+    name: bluframer-backend
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: PROJECT_URL
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: PORT
+        value: 4000
